@@ -42,7 +42,7 @@ include("include/sidebar.php");
 										        type: "success"
 									        });
 									        </script>'; 
-                                        echo '<meta http-equiv="refresh" content= "2;URL=?deleted" />'; 
+                                        // echo '<meta http-equiv="refresh" content= "2;URL=?deleted" />'; 
 
                                         }
                                         // get project list
