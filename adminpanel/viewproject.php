@@ -29,22 +29,22 @@ include("include/sidebar.php");
                                         <?php
                                         
                                         // delete project
-                                        if(isset($_POST["deleteproject"]))
-                                        {
-                                            $project_id = $_POST["projectid"];
-                                            $query = "DELETE FROM `project_list` WHERE `project_no` = $project_id";
-                                            $process = $conn->query($query);
-                                            echo '<script>
-									        swal({
-										        title: "Deleted",
-										        icon: "success",
-										        button: "close",
-										        type: "success"
-									        });
-									        </script>'; 
-                                        echo '<meta http-equiv="refresh" content= "2;URL=?deleted" />'; 
+                                        // if(isset($_POST["deleteproject"]))
+                                        // {
+                                        //     $project_id = $_POST["projectid"];
+                                        //     $query = "DELETE FROM `project_list` WHERE `project_no` = $project_id";
+                                        //     $process = $conn->query($query);
+                                        //     echo '<script>
+									    //     swal({
+										//         title: "Deleted",
+										//         icon: "success",
+										//         button: "close",
+										//         type: "success"
+									    //     });
+									    //     </script>'; 
+                                        // echo '<meta http-equiv="refresh" content= "2;URL=?deleted" />'; 
 
-                                        }
+                                        // }
                                         // get project list
                                         $query = "SELECT * FROM `project_list` ";
                                         $data = $conn->query($query);
@@ -68,20 +68,20 @@ include("include/sidebar.php");
 											</form>
 
                                             <!-- edit -->
-                                            <form action="editproject.php" method="post" class="d-inline p-2">
-												<input type="hidden" name="projectid" value='.$row["project_no"].'>
-												<button class="btn btn-info" type="submit" name="editproject">
-												<i class="fas fa-pen "></i><span> Edit</span>
-												</button>
-											</form>
+                                            <!--<form action="editproject.php" method="post" class="d-inline p-2"> -->
+											<!--	<input type="hidden" name="projectid" value='.$row["project_no"].'> -->
+											<!--	<button class="btn btn-info" type="submit" name="editproject"> -->
+											<!--	<i class="fas fa-pen "></i><span> Edit</span> -->
+											<!--	</button> -->
+											<!--</form> -->
 
                                             <!-- delete -->
-                                            <form action="" method="post" class="d-inline p-2">
-												<input type="hidden" name="projectid" value='.$row["project_no"].'>
-												<button class="btn btn-danger btn-circle" type="submit" name="deleteproject">
-												<i class="fas fa-trash "></i>
-												</button>
-											</form>
+                                            <!--<form action="" method="post" class="d-inline p-2"> -->
+											<!--	<input type="hidden" name="projectid" value='.$row["project_no"].'> -->
+											<!--	<button class="btn btn-danger btn-circle" type="submit" name="deleteproject"> -->
+											<!--	<i class="fas fa-trash "></i> -->
+											<!--	</button> -->
+											<!--</form> -->
 
                                             </td>
                                         </tr>

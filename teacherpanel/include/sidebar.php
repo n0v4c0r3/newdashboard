@@ -11,7 +11,7 @@
                 <div class="sidebar-brand-icon ">
                     <i class="fas fa-star"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">Admin <sup>Console</sup></div>
+                <div class="sidebar-brand-text mx-3">Teacher <sup>Console</sup></div>
             </a>
 
             <!-- Divider -->

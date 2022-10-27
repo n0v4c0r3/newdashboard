@@ -34,27 +34,42 @@
 
 
 
-            <!-- Nav Item - project -->
+            <!-- Nav Item - add texher -->
             <li class="nav-item">
-                <a class="nav-link" href="addproject.php">
+                <a class="nav-link" href="addteacher.php">
                     <i class="fas fa-fw fa-plus"></i>
-                    <span>Add Project</span></a>
+                    <span>Add Teacher</span></a>
             </li>
 
+            <!-- Nav Item - teachers -->
+            <li class="nav-item">
+                <a class="nav-link" href="allteachers.php">
+                    <i class="fas fa-fw fa-cog"></i>
+                    <span>All Teachers</span></a>
+            </li>
+
+            <!-- prrojects -->
             <li class="nav-item">
                 <a class="nav-link" href="viewproject.php">
                     <i class="fas fa-fw fa-cog"></i>
                     <span>Projects</span></a>
             </li>
 
-            <!-- Nav Item - student -->
+            <!-- batch -->
+            <li class="nav-item">
+                <a class="nav-link" href="addbatch.php">
+                    <i class="fas fa-fw fa-plus"></i>
+                    <span>Add batch</span></a>
+            </li>
+
+            <!-- students -->
             <li class="nav-item">
                 <a class="nav-link" href="viewstudent.php">
                     <i class="fas fa-fw fa-cog"></i>
-                    <span>Students</span></a>
+                    <span>students</span></a>
             </li>
-
-            <!-- Nav Item - example menu -->
+            
+            <!-- Nav Item - profile  -->
             <li class="nav-item">
                 <a class="nav-link" href="profile.php">
                     <i class="fas fa-fw fa-cog"></i>
