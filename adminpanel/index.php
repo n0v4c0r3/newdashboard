@@ -1,226 +1,103 @@
-<?php
-include("include/head.php");
-include("include/sidebar.php");
+<!DOCTYPE html>
+<html lang="en">
 
+<head>
 
-// projectnumber
-$query1 = "SELECT COUNT(project_no) FROM project_list";
-$data1= $conn->query($query1);
-$result1 = mysqli_fetch_row($data1);
-$projnum = $result1[0];
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
 
-// studentnumber
-$query2 = "SELECT COUNT(roll_no) FROM `student_list` ";
-$data2= $conn->query($query2);
-$result2 = mysqli_fetch_row($data2);
-$studnum = $result2[0];
+    <title>SB Admin 2 - Login</title>
 
-$query3 = "select round((SELECT COUNT(project_no) FROM project_list WHERE project_status=4) / (SELECT COUNT(project_no) FROM project_list)*100) FROM project_list";
-$data3= $conn->query($query3);
-$result3 = mysqli_fetch_row($data3);
-$assigned = $result3[0];
-// assignedproject
-?>
-<!--start paste -->
+    <!-- Custom fonts for this template-->
+    <link href="vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
+    <link
+        href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
+        rel="stylesheet">
 
-<!-- Begin Page Content -->
-<div class="container-fluid">
+    <!-- Custom styles for this template-->
+    <link href="css/sb-admin-2.min.css" rel="stylesheet">
 
-    <!-- Page Heading -->
-    <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <h1 class="h3 mb-0 text-gray-800">Dashboard</h1>
+</head>
+
+<body class="bg-gradient-primary">
+
+    <div class="container">
+
+        <!-- Outer Row -->
+        <div class="row justify-content-center">
+
+            <div class="col-xl-10 col-lg-12 col-md-9">
+
+                <div class="card o-hidden border-0 shadow-lg my-5">
+                    <div class="card-body p-0">
+                        <!-- Nested Row within Card Body -->
+                        <div class="row">
+                            <div class="col-lg-6 d-none d-lg-block bg-login-image"></div>
+                            <div class="col-lg-6">
+                                <div class="p-5">
+                                    <div class="text-center">
+                                        <h1 class="h4 text-gray-900 mb-4">Welcome Back!</h1>
+                                    </div>
+                                    <form class="user">
+                                        <div class="form-group">
+                                            <input type="email" class="form-control form-control-user"
+                                                id="exampleInputEmail" aria-describedby="emailHelp"
+                                                placeholder="Enter Email Address...">
+                                        </div>
+                                        <div class="form-group">
+                                            <input type="password" class="form-control form-control-user"
+                                                id="exampleInputPassword" placeholder="Password">
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="custom-control custom-checkbox small">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck">
+                                                <label class="custom-control-label" for="customCheck">Remember
+                                                    Me</label>
+                                            </div>
+                                        </div>
+                                        <a href="index.html" class="btn btn-primary btn-user btn-block">
+                                            Login
+                                        </a>
+                                        <hr>
+                                        <a href="index.html" class="btn btn-google btn-user btn-block">
+                                            <i class="fab fa-google fa-fw"></i> Login with Google
+                                        </a>
+                                        <a href="index.html" class="btn btn-facebook btn-user btn-block">
+                                            <i class="fab fa-facebook-f fa-fw"></i> Login with Facebook
+                                        </a>
+                                    </form>
+                                    <hr>
+                                    <div class="text-center">
+                                        <a class="small" href="forgot-password.html">Forgot Password?</a>
+                                    </div>
+                                    <div class="text-center">
+                                        <a class="small" href="register.html">Create an Account!</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
 
     </div>
 
-    <!-- Content Row -->
-    <div class="row">
+    <!-- Bootstrap core JavaScript-->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Projects</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $projnum?></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Core plugin JavaScript-->
+    <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Total Students</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $studnum?></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">project Assigned
-                            </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $assigned?>%</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?php echo $assigned?>%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+</body>
 
-        <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                10jun-2022</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="time"></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- Content Row -->
-    <div class="row">
-        <div class="col-lg-12">
-            <div class="card shadow m-2">
-                <div class="card-body">
-                <section>
-                <div class="container py-5">
-                    <div class="row">
-                        <div class="col-lg-4">
-                            <div class="card">
-                                <div class="card-body text-center">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                                        alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                    <p class="text-muted mb-1 pt-3">HOD,MCA</p>
-                                    <p class="text-muted mb-4">GIMT,Guwahati-17</p>
-
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-lg-8">
-                            <div class="card mb-4">
-                                <div class="card-body">
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Full Name</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Pranay Kalita</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Email</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">pranaykalita2@gmail.com</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Phone</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">(097) 234-5678</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Mobile</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">(098) 765-4321</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Address</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    
-                    <div class="row">
-                        <div class="col-lg-12 m-2">
-                            <div class="card">
-                                <div class="card-body">
-                                    <h3 class="mb-2 text-muted ">Bio</h3>
-                                    <p class="text-dark m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, eius?</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-                </div>
-            </div>
-        </div>
-
-
-    </div>
-
-</div>
-<!-- /.container-fluid -->
-
-</div>
-<!-- End of Main Content -->
-
-
-
-
-
-
-<!-- end paste -->
-
-<?php
-include("include/footer.php");
-?>
+</html>
