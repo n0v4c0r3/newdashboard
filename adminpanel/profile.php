@@ -1,6 +1,53 @@
 <?php
 include("include/head.php");
 include("include/sidebar.php");
+
+// password udate
+
+if(isset($_POST["updatepasswordButton"]))
+{
+    $currentpssword =  $conn->real_escape_string($_POST["oldpassword"]);
+    $newpass =  $conn->real_escape_string($_POST["newPassword"]);
+    $cnfpass =  $conn->real_escape_string($_POST["confirmPassword"]);
+    
+
+    // matching login
+    if($newpass == $cnfpass)
+    {
+        // verify old logic
+        $sqlpass = "SELECT `password` FROM `teacher_list` WHERE `email` = '{$_SESSION["teacheremail"]}'";
+        $datapass = $conn->query($sqlpass);
+        $rowpass = $datapass->fetch_assoc();
+
+        $oldpass = $rowpass["password"];
+        // echo $oldpass;die();
+
+        if( $oldpass == $currentpssword)
+        {
+            $query = " UPDATE `teacher_list` SET `password`= '{$newpass}' WHERE `email` = '{$_SESSION["teacheremail"]}' ";
+            $data = $conn->query($query);
+            echo '<script>
+            swal({
+            title: "Update Successfull",
+            icon: "success",
+            button: "close",
+            type: "success"
+            });
+            </script>'; 
+        }
+        else{
+            echo '<script>alert("Oldpassword incorrect")</script>';
+
+        }
+    }
+    else
+    {
+        echo '<script>alert("password not match")</script>';
+    }
+   
+
+}
+
 ?>
 <!--start paste -->
 
@@ -103,39 +150,35 @@ include("include/sidebar.php");
     <div class="card shadow mb-4">
         <div class="card-body">
         
-            <section>
+        <section>
                 <div class="container px-5 my-5">
-                <h2 class="h3 mb-2 text-gray-800">password update</h2>
-                    <form class="passwordupdateform" method="POST" action="">
+                    <h2 class="h3 mb-2 text-gray-800">password update</h2>
+                    <form class="passwordupdateform" method="post" action="">
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="oldpassword" type="password" placeholder="Current Password"
-                                data-sb-validations="required" />
+                            <input class="form-control" name="oldpassword" type="password" placeholder="Current Password"
+                                data-sb-validations="required" required/>
                             <div class="invalid-feedback" data-sb-feedback="oldpassword:required">Current password is
                                 required.</div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="newPassword" type="password" placeholder="New Password"
-                                data-sb-validations="required" />
+                            <input class="form-control" name="newPassword" type="password" placeholder="New Password"
+                                data-sb-validations="required"  required/>
                             <div class="invalid-feedback" data-sb-feedback="newPassword:required">New Password is
                                 required.</div>
                         </div>
                         <div class="form-floating mb-3">
-                            <input class="form-control" id="confirmPassword" type="password"
-                                placeholder="Confirm Password" data-sb-validations="required" />
-                            <div class="invalid-feedback" data-sb-feedback="confirmPassword:required">Confirm Password is required.</div>
+                            <input class="form-control" name="confirmPassword" type="password"
+                                placeholder="Confirm Password" data-sb-validations="required" required />
+                            <div class="invalid-feedback" data-sb-feedback="confirmPassword:required">Confirm Password
+                                is required.</div>
                         </div>
-                        <div class="d-grid">
-                            <!-- <button class="btn btn-primary btn-lg" id="updatepasswordButton"
-                                type="submit">Submit</button> -->
+                        <div class="d-flex justify-content-center mb-2 py-2">
+                            <button type="submit" class="btn btn-outline-primary ms-1" name="updatepasswordButton">Change Password</button>
                         </div>
                     </form>
                 </div>
-                <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
 
             </section>
-            <div class="d-flex justify-content-center mb-2">
-                <button type="button" class="btn btn-outline-primary ms-1"  id="updatepasswordButton">Change Password</button>
-            </div>
         </div>
     </div>
     <!-- end password -->

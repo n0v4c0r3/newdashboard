@@ -1,4 +1,12 @@
 <?php
+session_start();
+
+// if notlogin then refirect
+if(!isset($_SESSION["teacheremail"]))
+{
+    header("LOCATION: /teacherpanel/ ");
+}
+
 include("../dbcon.php");
 ?>
 <!DOCTYPE html>

@@ -47,8 +47,8 @@ include("include/sidebar.php");
                                             <td>
                                             
                                             <form action="studetdetails.php" method="post" class="d-inline p-2">
-												<input type="hidden" name="id" value='.$row["roll_no"].'>
-												<button class="btn btn-success" type="submit" name="editproject">
+												<input type="hidden" name="rollid" value='.$row["roll_no"].'>
+												<button class="btn btn-success" type="submit" name="viewstudent">
 												<i class="fas fa-eye "></i><span> View</span>
 												</button>
 											</form>

@@ -7,6 +7,15 @@ include("include/sidebar.php");
 if(isset($_POST["addprojectButton"]))
 {
     
+    $name = $_POST[''];
+    $email = $_POST['']; 
+    $password = $_POST[''];
+    $address = $_POST[''];
+    $phone = $_POST[''];
+    $mobile = $_POST[''];
+    $bio = $_POST[''];
+    $dept = $_POST[''];
+    $institute = $_POST[''];
     
     $query = "";
     $data = $conn->query($query);
@@ -40,29 +49,15 @@ if(isset($_POST["addprojectButton"]))
 
             <!-- paste form -->
             <form id="teacherform" data-sb-form-api-token="API_TOKEN">
-                
-                <label class="form-label" for="fullName">Profile Image</label>
-                <div class="input-group mb-3">
-                
-                    <div class="input-group-prepend">
-                   
-                        <span class="input-group-text">Upload image</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                    </div>
-                </div>
-
                 <div class="mb-3">
-                    <label class="form-label" for="fullName">Full Name</label>
-                    <input class="form-control" id="fullName" type="text" placeholder="Full Name"
+                    <!-- <label class="form-label" for="fullName">Full Name</label> -->
+                    <input class="form-control" name="fullName" type="text" placeholder="Full Name"
                         data-sb-validations="required" required />
                     <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is required.</div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="emailAddress">Email Address</label>
-                    <input class="form-control" id="emailAddress" type="email" placeholder="Email Address"
+                    <!-- <label class="form-label" for="emailAddress">Email Address</label> -->
+                    <input class="form-control" name="emailAddress" type="email" placeholder="Email Address"
                         data-sb-validations="required,email" required />
                     <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.
                     </div>
@@ -70,20 +65,44 @@ if(isset($_POST["addprojectButton"]))
                         valid.</div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="address">Address</label>
-                    <input class="form-control" id="address" type="text" placeholder="Address"
-                        data-sb-validations="required" />
+                    <!-- <label class="form-label" for="address">Address</label> -->
+                    <input class="form-control" name="address" type="text" placeholder="Address"
+                        data-sb-validations="required" required/>
                     <div class="invalid-feedback" data-sb-feedback="address:required">Address is required.</div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="mobile">Mobile</label>
-                    <input class="form-control" id="mobile" type="text" placeholder="Mobile"
-                        data-sb-validations="required" />
-                    <div class="invalid-feedback" data-sb-feedback="mobile:required">Mobile is required.</div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="phone" type="text" placeholder="Phone"
+                        data-sb-validations="required" required/>
+                    <!-- <label for="phone">Phone</label> -->
+                    <div class="invalid-feedback" data-sb-feedback="phone:required">Phone is required.</div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="password">Password</label>
-                    <input class="form-control" id="password" type="password" placeholder="Password"
+                    <!-- <label class="form-label" for="mobile">Mobile</label> -->
+                    <input class="form-control" name="mobile" type="text" placeholder="Mobile"
+                        data-sb-validations="required" required/>
+                    <div class="invalid-feedback" data-sb-feedback="mobile:required">Mobile is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" name="bio" type="text" placeholder="Bio"
+                        data-sb-validations="required" required></textarea>
+                    <!-- <label for="bio">Bio</label> -->
+                    <div class="invalid-feedback" data-sb-feedback="bio:required">Bio is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="depertmant" type="text" placeholder="Depertmant"
+                        data-sb-validations="required" required/>
+                    <!-- <label for="depertmant">Depertmant</label> -->
+                    <div class="invalid-feedback" data-sb-feedback="depertmant:required">Depertmant is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="institute" type="text" placeholder="Institute"
+                        data-sb-validations="required" required/>
+                    <!-- <label for="institute">Institute</label> -->
+                    <div class="invalid-feedback" data-sb-feedback="institute:required">Institute is required.</div>
+                </div>
+                <div class="mb-3">
+                    <!-- <label class="form-label" for="password">Password</label>? -->
+                    <input class="form-control" name="password" type="password" placeholder="Password"
                         data-sb-validations="required" required />
                     <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
                 </div>

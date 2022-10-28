@@ -2,6 +2,10 @@
 include("include/head.php");
 include("include/sidebar.php");
 
+// get profile data
+$pquery = "SELECT * FROM `teacher_list` WHERE `email` = '{$_SESSION["teacheremail"]}'";
+$pdata = $conn->query($pquery);
+$profrow = $pdata->fetch_assoc();
 
 // projectnumber
 $query1 = "SELECT COUNT(project_no) FROM project_list";
@@ -145,7 +149,7 @@ $assigned = $result3[0];
                                             <p class="mb-0">Full Name</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Pranay Kalita</p>
+                                            <p class="text-muted mb-0"><?php echo $profrow["name"]?></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -154,7 +158,7 @@ $assigned = $result3[0];
                                             <p class="mb-0">Email</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">pranaykalita2@gmail.com</p>
+                                            <p class="text-muted mb-0"><?php echo $profrow["email"]?></p>
                                         </div>
                                     </div>
                                     <hr>

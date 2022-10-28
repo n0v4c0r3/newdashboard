@@ -3,25 +3,32 @@ include("include/head.php");
 include("include/sidebar.php");
 
 
-// insert project to database
-if(isset($_POST["addprojectButton"]))
-{
     
-    
-    $query = "";
-    $data = $conn->query($query);
-    echo '<script>
-	swal({
-	    title: "Teacher added",
-	    icon: "success",
-	    button: "close",
-	    type: "success"
-	});
-	</script>'; 
+    // get details
+    if(isset($_POST["editteacher"]))
+    {
+        $teacherid =$_POST["teacherid"];
 
-    // echo '<meta http-equiv="refresh" content= "2;URL=?added" />'; 
+        $query2 = "SELECT * FROM `teacher_list` WHERE `teacher_id` = $teacherid";
+        $data2  = $conn->query($query2);
+        $row2= $data2->fetch_assoc();
+    }
+    // update details
+    if(isset($_POST["updateproject"]))
+    {
+        $tid = $_POST["tid"];
+        $name = $_POST["fullName"];
+        $address = $_POST["address"];
+        $phone = $_POST["phone"];
+        $mobile = $_POST["mobile"];
+        $bio = $_POST["bio"];
+        $dept = $_POST["depertmant"];
+        $institute = $_POST["institute"];
 
-}
+        // $query2 = "UPDATE `teacher_list` SET `name`='[value-2]',`email`='[value-3]' WHERE `teacher_id` = $tid";
+        // $data2  = $conn->query($query2);
+        // $row2= $data2->fetch_assoc();
+    }
 ?>
 <!--start paste -->
 
@@ -39,57 +46,53 @@ if(isset($_POST["addprojectButton"]))
         <div class="card-body mx-3">
 
             <!-- paste form -->
-            <form id="teacherform" data-sb-form-api-token="API_TOKEN">
-                
-                <label class="form-label" for="fullName">Profile Image</label>
-                <div class="input-group mb-3">
-                
-                    <div class="input-group-prepend">
-                   
-                        <span class="input-group-text">Upload image</span>
-                    </div>
-                    <div class="custom-file">
-                        <input type="file" class="custom-file-input" id="inputGroupFile01">
-                        <label class="custom-file-label" for="inputGroupFile01">Choose file</label>
-                    </div>
-                </div>
-
+            <form id="teacherform" data-sb-form-api-token="API_TOKEN" method="post" action="">
                 <div class="mb-3">
-                    <label class="form-label" for="fullName">Full Name</label>
-                    <input class="form-control" id="fullName" type="text" placeholder="Full Name"
-                        data-sb-validations="required" required />
+                    <!-- <label class="form-label" for="fullName">Full Name</label> -->
+                    <input class="form-control" name="fullName" type="text" placeholder="Full Name" value="<?php echo $row2["name"] ?>"
+                        data-sb-validations="required"  />
                     <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is required.</div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="emailAddress">Email Address</label>
-                    <input class="form-control" id="emailAddress" type="email" placeholder="Email Address"
-                        data-sb-validations="required,email" required />
-                    <div class="invalid-feedback" data-sb-feedback="emailAddress:required">Email Address is required.
-                    </div>
-                    <div class="invalid-feedback" data-sb-feedback="emailAddress:email">Email Address Email is not
-                        valid.</div>
-                </div>
-                <div class="mb-3">
-                    <label class="form-label" for="address">Address</label>
-                    <input class="form-control" id="address" type="text" placeholder="Address"
-                        data-sb-validations="required" />
+                    <!-- <label class="form-label" for="address">Address</label> -->
+                    <input class="form-control" name="address" type="text" placeholder="Address" value="<?php ?>"
+                        data-sb-validations="required"  />
                     <div class="invalid-feedback" data-sb-feedback="address:required">Address is required.</div>
                 </div>
-                <div class="mb-3">
-                    <label class="form-label" for="mobile">Mobile</label>
-                    <input class="form-control" id="mobile" type="text" placeholder="Mobile"
-                        data-sb-validations="required" />
-                    <div class="invalid-feedback" data-sb-feedback="mobile:required">Mobile is required.</div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="phone" type="text" placeholder="Phone" value="<?php ?>"
+                        data-sb-validations="required"  />
+                    <!-- <label for="phone">Phone</label> -->
+                    <div class="invalid-feedback" data-sb-feedback="phone:required">Phone is required.</div>
                 </div>
                 <div class="mb-3">
-                    <label class="form-label" for="password">Password</label>
-                    <input class="form-control" id="password" type="password" placeholder="Password"
-                        data-sb-validations="required" required />
-                    <div class="invalid-feedback" data-sb-feedback="password:required">Password is required.</div>
+                    <!-- <label class="form-label" for="mobile">Mobile</label> -->
+                    <input class="form-control" name="mobile" type="text" placeholder="Mobile" value="<?php ?>"
+                        data-sb-validations="required"  />
+                    <div class="invalid-feedback" data-sb-feedback="mobile:required">Mobile is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <textarea class="form-control" name="bio" type="text" placeholder="Bio" value="<?php ?>"
+                        data-sb-validations="required" ></textarea>
+                    <!-- <label for="bio">Bio</label> -->
+                    <div class="invalid-feedback" data-sb-feedback="bio:required">Bio is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="depertmant" type="text" placeholder="Depertmant" value="<?php ?>"
+                        data-sb-validations="required"  />
+                    <!-- <label for="depertmant">Depertmant</label> -->
+                    <div class="invalid-feedback" data-sb-feedback="depertmant:required">Depertmant is required.</div>
+                </div>
+                <div class="form-floating mb-3">
+                    <input class="form-control" name="institute" type="text" placeholder="Institute" value="<?php ?>"
+                        data-sb-validations="required"  />
+                    <!-- <label for="institute">Institute</label> -->
+                    <div class="invalid-feedback" data-sb-feedback="institute:required">Institute is required.</div>
                 </div>
 
                 <div class="d-grid">
-                    <button class="btn btn-success btn-lg" name="addprojectButton" type="submit">Update</button>
+                    <input type="hidden" name="tid" value="<?php echo $row2["teacher_id"] ?>">
+                    <button class="btn btn-success btn-lg" name="updateproject" type="submit">Update</button>
                 </div>
             </form>
             <!-- end form -->

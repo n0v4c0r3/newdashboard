@@ -1,5 +1,14 @@
 <?php
+session_start();
+
+// if notlogin then refirect
+if(!isset($_SESSION["adminemail"]))
+{
+    header("LOCATION: /adminpanel/ ");
+}
+
 include("../dbcon.php");
+
 ?>
 <!DOCTYPE html>
 <html lang="en">

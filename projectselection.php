@@ -96,10 +96,12 @@ include("dbcon.php");
                                 // preference
 
                                 $pref1 = $_POST['preference1'];
-                                $pref2 = $_POST['preference1'];
-                                $pref3 = $_POST['preference1'];
-                                $pref4 = $_POST['preference1'];
-                                $pref5 = $_POST['preference1'];
+                                $pref2 = $_POST['preference2'];
+                                $pref3 = $_POST['preference3'];
+                                $pref4 = $_POST['preference4'];
+                                $pref5 = $_POST['preference5'];
+
+                                // echo ";<script>alert('')</script>";
 
                                 if ($Option == '1') { //send single student data
 
@@ -229,47 +231,85 @@ include("dbcon.php");
                                 </div>
                                 <!-- student2 end -->
 
-                                <!-- project preference -->
-                                <div class="py-2">
+                                 <!-- project preference -->
+                                 <div class="py-2">
                                     <div class="text-success p-2">Project Preference</div>
+                                    
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="preference1" aria-label="Preference 1">
+                                        <select class="form-select" name="preference1" aria-label="Preference 1">
                                         <?php
-                                            $q = "SELECT * FROM `project_lsit`";
-                                            $d = $conn->query($q);
-                                            while($r = $d->fetch_assoc())
-                                            {
-                                                echo '<option name="batchname" value='.$r["project_no"].'>'.$r["project_name"].'</option>';
+                                            $pquery = "SELECT * FROM `project_list` WHERE project_status = '0' ";
+                                            $data = $conn->query($pquery);
+                                            while ($rows = $data->fetch_assoc()) {
+                                                // 0 for available
+                                                // 1 for Assigned
+                                                echo '<option value="'.$rows["project_no"].'">'.$rows["project_name"].'</option>';
                                             }
                                         ?>
-                                            <option value="1">1</option>
                                         </select>
                                         <label for="preference1">Preference 1</label>
                                     </div>
+
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="preference2" aria-label="Preference 2">
-                                            <option value="1">1</option>
+                                        <select class="form-select" name="preference2" aria-label="Preference 2">
+                                        <?php
+                                            $pquery = "SELECT * FROM `project_list` WHERE project_status = '0' ";
+                                            $data = $conn->query($pquery);
+                                            while ($rows = $data->fetch_assoc()) {
+                                                // 0 for available
+                                                // 1 for Assigned
+                                                echo '<option value="'.$rows["project_no"].'">'.$rows["project_name"].'</option>';
+                                            }
+                                        ?>
                                         </select>
                                         <label for="preference2">Preference 2</label>
                                     </div>
+
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="preference3" aria-label="Preference 3">
-                                            <option value="1">1</option>
+                                        <select class="form-select" name="preference3" aria-label="Preference 3">
+                                        <?php
+                                            $pquery = "SELECT * FROM `project_list` WHERE project_status = '0' ";
+                                            $data = $conn->query($pquery);
+                                            while ($rows = $data->fetch_assoc()) {
+                                                // 0 for available
+                                                // 1 for Assigned
+                                                echo '<option value="'.$rows["project_no"].'">'.$rows["project_name"].'</option>';
+                                            }
+                                        ?>
                                         </select>
                                         <label for="preference3">Preference 3</label>
                                     </div>
+
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="preference4" aria-label="Preference 4">
-                                            <option value="1">1</option>
+                                        <select class="form-select" name="preference4" aria-label="Preference 4">
+                                        <?php
+                                            $pquery = "SELECT * FROM `project_list` WHERE project_status = '0' ";
+                                            $data = $conn->query($pquery);
+                                            while ($rows = $data->fetch_assoc()) {
+                                                // 0 for available
+                                                // 1 for Assigned
+                                                echo '<option value="'.$rows["project_no"].'">'.$rows["project_name"].'</option>';
+                                            }
+                                        ?>
                                         </select>
                                         <label for="preference4">Preference 4</label>
                                     </div>
+
                                     <div class="form-floating mb-3">
-                                        <select class="form-select" id="preference4" aria-label="Preference 4">
-                                            <option value="1">1</option>
+                                        <select class="form-select" name="preference5" aria-label="Preference 5">
+                                        <?php
+                                            $pquery = "SELECT * FROM `project_list` WHERE project_status = '0' ";
+                                            $data = $conn->query($pquery);
+                                            while ($rows = $data->fetch_assoc()) {
+                                                // 0 for available
+                                                // 1 for Assigned
+                                                echo '<option value="'.$rows["project_no"].'">'.$rows["project_name"].'</option>';
+                                            }
+                                        ?>
                                         </select>
-                                        <label for="preference4">Preference 4</label>
+                                        <label for="preference4">Preference 5</label>
                                     </div>
+                               
                                     <!-- end preference -->
                                     <div class="d-grid">
                                         <button class="btn btn-primary btn-lg" id="submitButton" name="studentpref"
@@ -297,7 +337,7 @@ include("dbcon.php");
                             <table class="table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th> id</th>
+                                        <th>id</th>
                                         <th>project Name</th>
                                         <th>Description</th>
                                         <th>Allocation Status</th>
@@ -311,6 +351,8 @@ include("dbcon.php");
                                      while($row = $data->fetch_assoc())
                                      {
                                         // condition
+                                        // 0 for available
+                                        // 1 for Assigned
                                         if ($row["project_status"] == 0) {
                                             $status = '<div class="text-success">Available</div>';
                                         } else {
