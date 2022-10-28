@@ -20,7 +20,7 @@ include("include/sidebar.php");
                                             <th>Project id</th>
                                             <th>Project Name</th>
                                             <th>Description</th>
-                                            <th>tags </th>
+                                            <!-- <th>tags </th> -->
                                             <th>Action</th>
                                         </tr>
                                     </thead>
@@ -56,7 +56,6 @@ include("include/sidebar.php");
                                             <td>'.$row["project_no"].'</td>
                                             <td>'.$row["project_name"].'</td>
                                             <td>'.$row["project_des"].'</td>
-                                            <td>'.$row["project_tag"].'</td>
                                             <td>
                                             
                                             <!-- View  -->

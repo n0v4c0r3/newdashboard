@@ -1,3 +1,6 @@
+<?php
+include("dbcon.php");
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -19,6 +22,23 @@
         rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="css/styles.css" rel="stylesheet" />
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $("#noOfStudent").change(function () {
+                $(this).find("option:selected").each(function () {
+                    var optionValue = $(this).attr("value");
+                    // console.log(optionValue);
+                    if (optionValue == '1') {
+                        $(".studentform2").not("." + optionValue).hide();
+                        $("." + optionValue).show();
+                    } else {
+                        $(".studentform2").show();
+                    }
+                });
+            }).change();
+        });
+    </script>
 </head>
 
 <body id="page-top">
@@ -43,107 +63,280 @@
     </nav>
 
     <!-- body -->
-    <section class="contact-section bg-black">
+    <section class="contact-section bg-black shadow">
         <div class="row">
             <div class="col-lg-12">
                 <div class="container px-5 my-5">
-                    <form id="contactForm">
-                        <!-- student selection -->
+                    <div class="card shadow">
+                        <div class="card-body">
 
-                        <div class="form-floating mb-3">
-                            <select class="form-select" id="noOfStudent" aria-label="No of Student">
-                                <option value="1">1</option>
-                                <option value="2">2</option>
-                            </select>
-                            <label for="noOfStudent">No of Student</label>
+                            <!-- php -->
+                            <?php
+                            // insert to db
+                            if(isset($_POST["studentpref"]))
+                            {
+
+                                // student count
+                                $Option =  $_POST['noOfStudent'];
+
+                                // student1
+                                $s1name = $_POST['s1fullName'];
+                                $s1sex = $_POST['s1sex'];
+                                $s1roll = $_POST['s1rollNumber'];
+                                $s1cgp = $_POST['s1cgpa'];
+                                $s1year = $_POST['s1year'];
+
+                                // student2
+                                $s2name = $_POST['s2fullName'];
+                                $s2sex = $_POST['s2sex'];
+                                $s2roll = $_POST['s2rollNumber'];
+                                $s2cgp = $_POST['s2cgpa'];
+                                $s2year = $_POST['s2year'];
+
+                                // preference
+
+                                $pref1 = $_POST['preference1'];
+                                $pref2 = $_POST['preference1'];
+                                $pref3 = $_POST['preference1'];
+                                $pref4 = $_POST['preference1'];
+                                $pref5 = $_POST['preference1'];
+
+                                if ($Option == '1') { //send single student data
+
+                                    $query = '';
+                                    $data = $conn->query($query);
+                                    echo '<script>
+                                    swal({
+                                        title: "Submitted",
+                                        icon: "success",
+                                        button: "close",
+                                        type: "success"
+                                    });
+                                    </script>'; 
+                                    
+                                }
+                                elseif ($Option == '2') { //send second+first student data
+
+                                    $query = '';
+                                    $data = $conn->query($query);
+                                    echo '<script>
+                                    swal({
+                                        title: "Submitted",
+                                        icon: "success",
+                                        button: "close",
+                                        type: "success"
+                                    });
+                                    </script>'; 
+                                   
+                                }
+                                
+                                
+
+                            }
+                            ?>
+                            <form id="contactForm" method="post" action="">
+                                <!-- student selection -->
+                                <div class="form-floating mb-3" id="studentform">
+                                    <select class="form-select" id="noOfStudent" name="noOfStudent"  aria-label="No of Student">
+                                        <option value="1" selected>1</option>
+                                        <option value="2">2</option>
+                                    </select>
+                                    <label for="noOfStudent">No of Student</label>
+                                </div>
+                                <!-- student form1 -->
+                                <div class="studentform1">
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="s1fullName" type="text"
+                                            placeholder="Full Name" data-sb-validations="required" />
+                                        <label for="fullName">Full Name</label>
+                                        <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is
+                                            required.
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="s1sex" type="text" placeholder="Sex"
+                                            data-sb-validations="required" />
+                                        <label for="sex">Sex</label>
+                                        <div class="invalid-feedback" data-sb-feedback="sex:required">Sex is required.
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="s1rollNumber" type="text"
+                                            placeholder="Roll Number" data-sb-validations="required" />
+                                        <label for="rollNumber">Roll Number</label>
+                                        <div class="invalid-feedback" data-sb-feedback="rollNumber:required">Roll Number
+                                            is
+                                            required.</div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="s1cgpa" type="text" placeholder="CGPA"
+                                            data-sb-validations="required" />
+                                        <label for="cgpa">CGPA</label>
+                                        <div class="invalid-feedback" data-sb-feedback="cgpa:required">CGPA is required.
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="s1year" type="text" placeholder="Year"
+                                            data-sb-validations="required" />
+                                        <label for="year">Year</label>
+                                        <div class="invalid-feedback" data-sb-feedback="year:required">Year is required.
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <!-- student1 end -->
+
+                                <!-- student2 form1 -->
+                                <div class="studentform2">
+                                    <div class="text-success p-2">Enter second student details</div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="s2fullName" type="text"
+                                            placeholder="Full Name" data-sb-validations="required" />
+                                        <label for="fullName">Full Name</label>
+                                        <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is
+                                            required.
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="s2sex" type="text" placeholder="Sex"
+                                            data-sb-validations="required" />
+                                        <label for="sex">Sex</label>
+                                        <div class="invalid-feedback" data-sb-feedback="sex:required">Sex is required.
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="s2rollNumber" type="text"
+                                            placeholder="Roll Number" data-sb-validations="required" />
+                                        <label for="rollNumber">Roll Number</label>
+                                        <div class="invalid-feedback" data-sb-feedback="rollNumber:required">Roll Number
+                                            is
+                                            required.</div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="s2cgpa" type="text" placeholder="CGPA"
+                                            data-sb-validations="required" />
+                                        <label for="cgpa">CGPA</label>
+                                        <div class="invalid-feedback" data-sb-feedback="cgpa:required">CGPA is required.
+                                        </div>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <input class="form-control" name="s2year" type="text" placeholder="Year"
+                                            data-sb-validations="required" />
+                                        <label for="year">Year</label>
+                                        <div class="invalid-feedback" data-sb-feedback="year:required">Year is required.
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- student2 end -->
+
+                                <!-- project preference -->
+                                <div class="py-2">
+                                    <div class="text-success p-2">Project Preference</div>
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="preference1" aria-label="Preference 1">
+                                        <?php
+                                            $q = "SELECT * FROM `project_lsit`";
+                                            $d = $conn->query($q);
+                                            while($r = $d->fetch_assoc())
+                                            {
+                                                echo '<option name="batchname" value='.$r["project_no"].'>'.$r["project_name"].'</option>';
+                                            }
+                                        ?>
+                                            <option value="1">1</option>
+                                        </select>
+                                        <label for="preference1">Preference 1</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="preference2" aria-label="Preference 2">
+                                            <option value="1">1</option>
+                                        </select>
+                                        <label for="preference2">Preference 2</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="preference3" aria-label="Preference 3">
+                                            <option value="1">1</option>
+                                        </select>
+                                        <label for="preference3">Preference 3</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="preference4" aria-label="Preference 4">
+                                            <option value="1">1</option>
+                                        </select>
+                                        <label for="preference4">Preference 4</label>
+                                    </div>
+                                    <div class="form-floating mb-3">
+                                        <select class="form-select" id="preference4" aria-label="Preference 4">
+                                            <option value="1">1</option>
+                                        </select>
+                                        <label for="preference4">Preference 4</label>
+                                    </div>
+                                    <!-- end preference -->
+                                    <div class="d-grid">
+                                        <button class="btn btn-primary btn-lg" id="submitButton" name="studentpref"
+                                            type="submit">Submit</button>
+                                    </div>
+                            </form>
+                            <!-- end form -->
+
+
                         </div>
-                        <div class="d-none" id="submitSuccessMessage">
-                            <div class="text-center mb-3">
-                                <div class="fw-bolder">Form submission successful!</div>
-                                <p>To activate this form, sign up at</p>
-                                <a
-                                    href="https://startbootstrap.com/solution/contact-forms">https://startbootstrap.com/solution/contact-forms</a>
-                            </div>
-                        </div>
-                        <!-- student form1 -->
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="fullName" type="text" placeholder="Full Name"
-                                data-sb-validations="required" />
-                            <label for="fullName">Full Name</label>
-                            <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is required.
-                            </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="sex" type="text" placeholder="Sex"
-                                data-sb-validations="required" />
-                            <label for="sex">Sex</label>
-                            <div class="invalid-feedback" data-sb-feedback="sex:required">Sex is required.</div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="rollNumber" type="text" placeholder="Roll Number"
-                                data-sb-validations="required" />
-                            <label for="rollNumber">Roll Number</label>
-                            <div class="invalid-feedback" data-sb-feedback="rollNumber:required">Roll Number is
-                                required.</div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="cgpa" type="text" placeholder="CGPA"
-                                data-sb-validations="required" />
-                            <label for="cgpa">CGPA</label>
-                            <div class="invalid-feedback" data-sb-feedback="cgpa:required">CGPA is required.</div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="year" type="text" placeholder="Year"
-                                data-sb-validations="required" />
-                            <label for="year">Year</label>
-                            <div class="invalid-feedback" data-sb-feedback="year:required">Year is required.</div>
-                        </div>
-                        <!-- student1 end -->
-                        <!-- student2 form1 -->
-                        <div class="text-success p-2">Enter second student details</div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="fullName" type="text" placeholder="Full Name"
-                                data-sb-validations="required" />
-                            <label for="fullName">Full Name</label>
-                            <div class="invalid-feedback" data-sb-feedback="fullName:required">Full Name is required.
-                            </div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="sex" type="text" placeholder="Sex"
-                                data-sb-validations="required" />
-                            <label for="sex">Sex</label>
-                            <div class="invalid-feedback" data-sb-feedback="sex:required">Sex is required.</div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="rollNumber" type="text" placeholder="Roll Number"
-                                data-sb-validations="required" />
-                            <label for="rollNumber">Roll Number</label>
-                            <div class="invalid-feedback" data-sb-feedback="rollNumber:required">Roll Number is
-                                required.</div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="cgpa" type="text" placeholder="CGPA"
-                                data-sb-validations="required" />
-                            <label for="cgpa">CGPA</label>
-                            <div class="invalid-feedback" data-sb-feedback="cgpa:required">CGPA is required.</div>
-                        </div>
-                        <div class="form-floating mb-3">
-                            <input class="form-control" id="year" type="text" placeholder="Year"
-                                data-sb-validations="required" />
-                            <label for="year">Year</label>
-                            <div class="invalid-feedback" data-sb-feedback="year:required">Year is required.</div>
-                        </div>
-                        <!-- student2 end -->
-                        <div class="d-grid">
-                            <button class="btn btn-primary btn-lg" id="submitButton" type="submit">Submit</button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
-
-
             </div>
         </div>
     </section>
+
+    <!-- project list -->
+    <section class="contact-section bg-black">
+        <div class="row">
+            <div class="col-lg-12">
+                <div class="container px-1 my-2">
+                    <div class="card shadow">
+                        <div class="card-body">
+                            <div class="text-danger text-center p-2">Project List</div>
+                            <table class="table table-borderless">
+                                <thead>
+                                    <tr>
+                                        <th> id</th>
+                                        <th>project Name</th>
+                                        <th>Description</th>
+                                        <th>Allocation Status</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php
+
+                                     $query = "SELECT * FROM `project_list` ";
+                                     $data = $conn->query($query);
+                                     while($row = $data->fetch_assoc())
+                                     {
+                                        // condition
+                                        if ($row["project_status"] == 0) {
+                                            $status = '<div class="text-success">Available</div>';
+                                        } else {
+                                            $status = '<div class="text-danger">Assigned</div>';
+                                        }
+                                        
+                                         echo '
+                                         <tr>
+                                        <td>'.$row["project_no"].'</td>
+                                        <td>'.$row["project_name"].'</td>
+                                        <td>'.$row["project_des"].'</td>
+                                        <td>'.$status.'</td>
+                                        </tr>';
+                                     }
+                                    ?>
+                                </tbody>
+
+
+                            </table>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- endlist -->
     <!-- end -->
 
     <!-- Footer-->
@@ -156,6 +349,9 @@
     <!-- Core theme JS-->
     <script src="js/scripts.js"></script>
     <script src="https://cdn.startbootstrap.com/sb-forms-latest.js"></script>
+
+    <!-- custonm -->
+
 </body>
 
 </html>
