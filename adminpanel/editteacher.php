@@ -14,7 +14,7 @@ include("include/sidebar.php");
         $row2= $data2->fetch_assoc();
     }
     // update details
-    if(isset($_POST["updateproject"]))
+    if(isset($_POST["updateteacher"]))
     {
         $tid = $_POST["tid"];
         $name = $_POST["fullName"];
@@ -92,7 +92,7 @@ include("include/sidebar.php");
 
                 <div class="d-grid">
                     <input type="hidden" name="tid" value="<?php echo $row2["teacher_id"] ?>">
-                    <button class="btn btn-success btn-lg" name="updateproject" type="submit">Update</button>
+                    <button class="btn btn-success btn-lg" name="updateteacher" type="submit">Update</button>
                 </div>
             </form>
             <!-- end form -->
