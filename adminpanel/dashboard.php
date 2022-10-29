@@ -15,7 +15,7 @@ $data2= $conn->query($query2);
 $result2 = mysqli_fetch_row($data2);
 $studnum = $result2[0];
 
-$query3 = "select round((SELECT COUNT(project_no) FROM project_list WHERE project_status=4) / (SELECT COUNT(project_no) FROM project_list)*100) FROM project_list";
+$query3 = "select round((SELECT COUNT(project_no) FROM project_list WHERE project_status=1) / (SELECT COUNT(project_no) FROM project_list)*100) FROM project_list";
 $data3= $conn->query($query3);
 $result3 = mysqli_fetch_row($data3);
 $assigned = $result3[0];
