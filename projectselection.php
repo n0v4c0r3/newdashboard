@@ -11,6 +11,9 @@ include("dbcon.php");
     <meta name="author" content="" />
     <title>MINOR PROJECT</title>
     <link rel="icon" type="image/x-icon" href="assets/favicon.ico" />
+    <!-- sweet alert -->
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+ 
     <!-- bootstrap -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css">
     <!-- Font Awesome icons (free version)-->
@@ -83,14 +86,14 @@ include("dbcon.php");
                                 $s1name = $_POST['s1fullName'];
                                 $s1sex = $_POST['s1sex'];
                                 $s1roll = $_POST['s1rollNumber'];
-                                $s1cgp = $_POST['s1cgpa'];
+                                $s1cgp = (float)$_POST['s1cgpa'];
                                 $s1year = $_POST['s1year'];
 
                                 // student2
                                 $s2name = $_POST['s2fullName'];
                                 $s2sex = $_POST['s2sex'];
                                 $s2roll = $_POST['s2rollNumber'];
-                                $s2cgp = $_POST['s2cgpa'];
+                                $s2cgp = (float)$_POST['s2cgpa'];
                                 $s2year = $_POST['s2year'];
 
                                 // preference
@@ -101,12 +104,27 @@ include("dbcon.php");
                                 $pref4 = $_POST['preference4'];
                                 $pref5 = $_POST['preference5'];
 
+                                // calcuate avg cgp
+
+                                $avgcgp = ($s1cgp+$s2cgp)/2;
+                                // echo "<script>alert('$avgcgp')</script>";die();
+
                                 // echo ";<script>alert('')</script>";
 
-                                if ($Option == '1') { //send single student data
+                                // send student data
 
-                                    $query = '';
+                                if ($Option == '1') { 
+                                    //send single student data
+
+                                    $query = "INSERT INTO `student_list`(`roll_no`,`cgpa`) VALUES ('$s1roll','$s1cgp')";
                                     $data = $conn->query($query);
+
+                                    // store preference
+
+                                    $prefquery = "INSERT INTO `preference_list`( `average_cgpa`,`Pr1`, `Pr2`, `Pr3`, `Pr4`, `Pr5`) 
+                                    VALUES ('$s1cgp','$pref1','$pref2','$pref3','$pref4','$pref5')";
+                                    $prefdata = $conn->query($prefquery);
+
                                     echo '<script>
                                     swal({
                                         title: "Submitted",
@@ -117,10 +135,20 @@ include("dbcon.php");
                                     </script>'; 
                                     
                                 }
-                                elseif ($Option == '2') { //send second+first student data
 
-                                    $query = '';
+                                elseif ($Option == '2') { 
+                                    //send second+first student data
+
+                                    // store preference
+
+                                    $prefquery = "INSERT INTO `preference_list`( `average_cgpa`,`Pr1`, `Pr2`, `Pr3`, `Pr4`, `Pr5`) 
+                                    VALUES ('$avgcgp','$pref1','$pref2','$pref3','$pref4','$pref5')";
+                                    $prefdata = $conn->query($prefquery);
+
+                                    $query = "INSERT INTO `student_list`(`roll_no`,`cgpa`) VALUES ('$s1roll','$s1cgp')"; //student1 entry sql
+                                    $query2 = "INSERT INTO `student_list`(`roll_no`,`cgpa`) VALUES ('$s2roll','$s2cgp')"; //student2 entry sql
                                     $data = $conn->query($query);
+                                    $data2 = $conn->query($query2);
                                     echo '<script>
                                     swal({
                                         title: "Submitted",
@@ -131,6 +159,7 @@ include("dbcon.php");
                                     </script>'; 
                                    
                                 }
+
                                 
                                 
 
