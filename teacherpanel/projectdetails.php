@@ -63,21 +63,14 @@ if(isset($_POST["editproject"]))
                             <hr>
                             <div class="row">
                                 <div class="col-sm-3">
-                                    <p class="mb-0">project Ttag </p>
+                                    <p class="mb-0">Project Tag </p>
                                 </div>
                                 <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row["batch_id"]?></p>
+                                    <p class="text-muted mb-0"><?php echo $row["project_tag"]?></p>
                                 </div>
                             </div>
                             <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Teaceher Id</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row["teacher_id"]?></p>
-                                </div>
-                            </div>
+                        
                         </div>
                     </div>
                     <div class="d-flex m-2">

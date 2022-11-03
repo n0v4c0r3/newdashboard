@@ -4,15 +4,7 @@ include("include/sidebar.php");
 
 // get project data
 
-if(isset($_POST["viewstudent"]))
-{
-    $rollno = $_POST["sid"];
 
-    $query = "SELECT * FROM `student_list` WHERE `roll_no` = '{$rollno}' ";
-    $data = $conn->query($query);
-    $row = $data->fetch_assoc();
-
-}
 
 ?>
 <!--start paste -->
@@ -28,65 +20,69 @@ if(isset($_POST["viewstudent"]))
     <!-- example card is bellow-->
 
     <!-- Card Start here if need card -->
-    <div class="card shadow mb-4">
-        <div class="card-body">
-            <div class="row">
-                <div class="col-lg-12">
-                    <div class="card mb-4">
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Roll ID</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row["roll_no"]?></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Batch ID </p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row["batch_id"]?></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">Name</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row["roll_no"]?></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">TeamNo</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row["team_no"]?></p>
-                                </div>
-                            </div>
-                            <hr>
-                            <div class="row">
-                                <div class="col-sm-3">
-                                    <p class="mb-0">CGPA</p>
-                                </div>
-                                <div class="col-sm-9">
-                                    <p class="text-muted mb-0"><?php echo $row["cgpa"]?></p>
-                                </div>
+    
+    
+    
+    
+    
+    
+    <div class="card-body">
+                            <div class="table-responsive">
+                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                                    <thead>
+                                        <tr>
+                                            <th>Roll no</th>
+                                            <th>Name</th>
+                                            <th>CGPG</th>
+                                        </tr>
+                                    </thead>
+                                
+                                    <tbody>
+                                        <?php
+                                        if(isset($_POST["viewstudent"]))
+                                        {
+                                            $tmid = $_POST["team_id"];
+                                        
+                                            $query = "SELECT * FROM `student_list` WHERE `team_no` = '{$tmid}' ";
+                                            $data = $conn->query($query);
+                                        
+                                         while($row = $data->fetch_assoc()){    
+                                            echo '
+                                            <tr>
+                                            <td>'.$row["roll_no"].'</td>
+                                            <td>'.$row["name"].'</td>
+                                            <td>'.$row["cgpa"].'</td>
+                                            
+                                            ';
+                                        }
+                                        }
+                                        ?>
+
+                      
+                                       
+                                    </tbody>
+                                </table>
+                                    <div class="d-flex m-2">
+                                            <a href="viewproject.php" class="btn btn-outline-success ms-1" >Back</a>
+                                       </div>
                             </div>
                         </div>
                     </div>
-                    <div class="d-flex m-2">
-                    <a href="viewproject.php" class="btn btn-outline-success ms-1" >Back</a>
-                    </div>
+
                 </div>
+                <!-- /.container-fluid -->
+
             </div>
-        </div>
-    </div>
+  
+    
+    
+    
+    
+    
+    
+    
+    
+   
     <!-- end card here -->
 
     <!-- end copy -->

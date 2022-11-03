@@ -79,7 +79,7 @@ if(isset($_POST["Login"]))
 
 				<form class="login100-form validate-form" action="index.php" method="post" >
 					<span class="login100-form-title">
-						ADMIN Login
+						Teacher Login
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">

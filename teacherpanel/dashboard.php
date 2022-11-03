@@ -133,10 +133,10 @@ $assigned = $result3[0];
                         <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                                        alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
-                                    <p class="text-muted mb-1 pt-3">HOD,MCA</p>
-                                    <p class="text-muted mb-4">GIMT,Guwahati-17</p>
+                                    <img src='images\teacher_logo.png'
+                                        alt="Profile Photo" class="rounded-circle img-fluid" style="width: 150px;">
+                                    <p class="text-muted mb-1 pt-3"><?php echo $profrow["designation"]?></p>
+                                    <p class="text-muted mb-4">Tezpur University</p>
 
                                 </div>
                             </div>
@@ -167,16 +167,7 @@ $assigned = $result3[0];
                                             <p class="mb-0">Phone</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">(097) 234-5678</p>
-                                        </div>
-                                    </div>
-                                    <hr>
-                                    <div class="row">
-                                        <div class="col-sm-3">
-                                            <p class="mb-0">Mobile</p>
-                                        </div>
-                                        <div class="col-sm-9">
-                                            <p class="text-muted mb-0">(098) 765-4321</p>
+                                            <p class="text-muted mb-0"><?php echo $profrow["phone_no"]?></p>
                                         </div>
                                     </div>
                                     <hr>
@@ -185,7 +176,7 @@ $assigned = $result3[0];
                                             <p class="mb-0">Address</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                            <p class="text-muted mb-0"><?php echo $profrow["address"]?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -198,7 +189,7 @@ $assigned = $result3[0];
                             <div class="card">
                                 <div class="card-body">
                                     <h3 class="mb-2 text-muted ">Bio</h3>
-                                    <p class="text-dark m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor, eius?</p>
+                                    <p class="text-dark m-2"><?php echo $profrow["bio"]?></p>
                                 </div>
                             </div>
                         </div>

@@ -76,11 +76,11 @@ if(isset($_POST["updatepasswordButton"]))
                         <div class="col-lg-4">
                             <div class="card">
                                 <div class="card-body text-center">
-                                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                                    <img src="images\teacher_logo.png"
                                         alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                     <h5 class="my-3"><?php echo $row["name"] ?></h5>
-                                    <p class="text-muted mb-1">HOD,MCA</p>
-                                    <p class="text-muted mb-4">GIMT,Guwahati-17</p>
+                                    <p class="text-muted mb-1"><?php echo $row["designation"] ?></p>
+                                    <p class="text-muted mb-4">Tezpur University</p>
 
                                 </div>
                             </div>
@@ -111,10 +111,10 @@ if(isset($_POST["updatepasswordButton"]))
                                             <p class="mb-0">Phone</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">(097) 234-5678</p>
+                                            <p class="text-muted mb-0"><?php echo $row["phone_no"] ?></p>
                                         </div>
                                     </div>
-                                    <hr>
+                                    <!-- <hr>
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <p class="mb-0">Mobile</p>
@@ -122,14 +122,14 @@ if(isset($_POST["updatepasswordButton"]))
                                         <div class="col-sm-9">
                                             <p class="text-muted mb-0">(098) 765-4321</p>
                                         </div>
-                                    </div>
-                                    <hr>
+                                    </div>-->
+                                    <hr> 
                                     <div class="row">
                                         <div class="col-sm-3">
                                             <p class="mb-0">Address</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Bay Area, San Francisco, CA</p>
+                                            <p class="text-muted mb-0"><?php echo $row["address"] ?></p>
                                         </div>
                                     </div>
                                 </div>
@@ -142,8 +142,7 @@ if(isset($_POST["updatepasswordButton"]))
                             <div class="card">
                                 <div class="card-body">
                                     <h3 class="mb-2 text-muted ">Bio</h3>
-                                    <p class="text-dark m-2">Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                                        Dolor, eius?</p>
+                                    <p class="text-dark m-2"><?php echo $row["bio"] ?></p>
                                 </div>
                             </div>
                         </div>
@@ -159,7 +158,7 @@ if(isset($_POST["updatepasswordButton"]))
 
             <section>
                 <div class="container px-5 my-5">
-                    <h2 class="h3 mb-2 text-gray-800">password update</h2>
+                    <h2 class="h3 mb-2 text-gray-800">Password Update</h2>
                     <form class="passwordupdateform" method="post" action="">
                         <div class="form-floating mb-3">
                             <input class="form-control" name="oldpassword" type="password" placeholder="Current Password"

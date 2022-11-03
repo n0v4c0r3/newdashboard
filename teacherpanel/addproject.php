@@ -8,21 +8,86 @@ if(isset($_POST["addprojectButton"]))
 {
     $year = $_POST["year"];
     $batch = $_POST["batchname"];
-    $projectname = $_POST["projectname"];
-    $description = $conn->real_escape_string($_POST["projectdesc"]);
+    $prname = $_POST["projectname"];
+    $prdes = $conn->real_escape_string($_POST["projectdesc"]);
     $tag = $conn->real_escape_string($_POST["projecttag"]);
+    $batchid=0;
+
+    $temail=$_SESSION["teacheremail"];
+    $sql_tea = "SELECT teacher_id FROM teacher_list WHERE email='$temail'";
+    $res1 = mysqli_query($conn, $sql_tea);
+    if(mysqli_num_rows($res1)>0)
+    {
+         foreach($res1 as $row1)
+         {
+   
+         $tid=$row1['teacher_id'];
+          }
+     }
+     $sql_1 = "SELECT sid FROM program WHERE name='$batch' and year='$year'";
+     $res2 = mysqli_query($conn, $sql_1);
+     if(mysqli_num_rows($res2)>0)
+     {
+         foreach($res2 as $row2)
+         {
+             $batchid=$row2['sid'];  
+         }  
+     }
+ 
+     if($batchid)
+     {
+        //  echo "00000000000";
+        //  echo $year;
+        //  echo $batch;
+        //  echo $prname;
+        //  echo $prdes;
+        //  echo $tid;  
+        //  echo $batchid;
+        //  echo $tag;
+        //  echo "00000000000" ;  
+ 
+ 
+             $sqlinst = "INSERT INTO project_list (project_name, project_des, teacher_id, batch_id, project_tag) VALUES ('$prname','$prdes','$tid','$batchid', '$tag')"; 
+             if(!mysqli_query($conn,$sqlinst))   
+                 {
+                    echo '<script>
+                    swal({
+                        title: "Project Not added",
+                        icon: "unsuccess",
+                        button: "close",
+                        type: "unsuccess"
+                    });
+                    </script>';
+                 }
+             else
+                 {
+                    echo '<script>
+                    swal({
+                        title: "Project added",
+                        icon: "success",
+                        button: "close",
+                        type: "success"
+                    });
+                    </script>'; 
+                 }
+        }
+        else
+        {   
+            echo '<script>
+            swal({
+                title: "Admin not allowed insert project for this year ",
+                icon: "warning",
+                button: "close",
+                type: "unsuccess"
+            });
+            </script>'; 
+          //  echo'<script type="text/javascript">alert("Admin not allowed insert project for this year !!")</script>';
+        } 
+
+    // $query = "INSERT INTO `project_list`(`project_name`, `project_des`, `project_tag`, `batch_id`) 
+    // VALUES ('$projectname','$description','$tag','$batch')";
+    // $data = $conn->query($query);
     
-    $query = "INSERT INTO `project_list`(`project_name`, `project_des`, `project_tag`, `batch_id`) 
-    VALUES ('$projectname','$description','$tag','$batch')";
-    $data = $conn->query($query);
-    echo '<script>
-	swal({
-	    title: "project added",
-	    icon: "success",
-	    button: "close",
-	    type: "success"
-	});
-	</script>'; 
 
     // echo '<meta http-equiv="refresh" content= "2;URL=?added" />'; 
 
@@ -53,17 +118,14 @@ if(isset($_POST["addprojectButton"]))
                 </div>
 
                 <div class="form-group mb-3">
-                    <label for="batch">Select Batch</label>
-                    <select class="form-control" name="batchname" aria-label="Batch">
-                        <?php
-                        $q = "SELECT * FROM `PROGRAM`";
-                        $d = $conn->query($q);
-                        while($r = $d->fetch_assoc())
-                        {
-                            echo '<option name="batchname" value='.$r["sid"].'>'.$r["name"].'</option>';
-                        }
-                        ?>
-                        
+                    <label for="batch" required>Select Batch</label>
+                    
+                    
+                   <select class="form-control" name="batchname" aria-label="Batch" required>
+                        <option value="">None</option>
+                        <option value="MCA">MCA</option>
+                        <option value="Btech">Btech</option>
+                        <option value="Mtech">Mtech</option>
                     </select>
                 </div>
                 <div class="form-group mb-3">

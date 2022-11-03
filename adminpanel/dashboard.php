@@ -9,7 +9,7 @@ $data1= $conn->query($query1);
 $result1 = mysqli_fetch_row($data1);
 $projnum = $result1[0];
 
-// studentnumber
+// studentnumbe
 $query2 = "SELECT COUNT(roll_no) FROM `student_list` ";
 $data2= $conn->query($query2);
 $result2 = mysqli_fetch_row($data2);
@@ -33,90 +33,7 @@ $assigned = $result3[0];
     </div>
 
     <!-- Content Row -->
-    <div class="row">
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-primary shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                Total Projects</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $projnum?></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-calendar fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-success shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-success text-uppercase mb-1">
-                                Total Students</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800"><?php echo $studnum?></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-dollar-sign fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Earnings (Monthly) Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-info shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-info text-uppercase mb-1">project Assigned
-                            </div>
-                            <div class="row no-gutters align-items-center">
-                                <div class="col-auto">
-                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800"><?php echo $assigned?>%</div>
-                                </div>
-                                <div class="col">
-                                    <div class="progress progress-sm mr-2">
-                                        <div class="progress-bar bg-info" role="progressbar" style="width: <?php echo $assigned?>%"
-                                            aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-clipboard-list fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        <!-- Pending Requests Card Example -->
-        <div class="col-xl-3 col-md-6 mb-4">
-            <div class="card border-left-warning shadow h-100 py-2">
-                <div class="card-body">
-                    <div class="row no-gutters align-items-center">
-                        <div class="col mr-2">
-                            <div class="text-xs font-weight-bold text-warning text-uppercase mb-1">
-                                10jun-2022</div>
-                            <div class="h5 mb-0 font-weight-bold text-gray-800" id="time"></div>
-                        </div>
-                        <div class="col-auto">
-                            <i class="fas fa-comments fa-2x text-gray-300"></i>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
     <!-- Content Row -->
     <div class="row">
@@ -132,7 +49,7 @@ $assigned = $result3[0];
                                     <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
                                         alt="avatar" class="rounded-circle img-fluid" style="width: 150px;">
                                     <p class="text-muted mb-1 pt-3">HOD,MCA</p>
-                                    <p class="text-muted mb-4">GIMT,Guwahati-17</p>
+                                    <p class="text-muted mb-4">Tezpur University</p>
 
                                 </div>
                             </div>
@@ -145,7 +62,7 @@ $assigned = $result3[0];
                                             <p class="mb-0">Full Name</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">Pranay Kalita</p>
+                                            <p class="text-muted mb-0">Priyanshu Pal Dutta</p>
                                         </div>
                                     </div>
                                     <hr>
@@ -154,7 +71,7 @@ $assigned = $result3[0];
                                             <p class="mb-0">Email</p>
                                         </div>
                                         <div class="col-sm-9">
-                                            <p class="text-muted mb-0">pranaykalita2@gmail.com</p>
+                                            <p class="text-muted mb-0">priyanshudutta775@gmail.com</p>
                                         </div>
                                     </div>
                                     <hr>

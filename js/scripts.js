@@ -52,3 +52,43 @@ window.addEventListener('DOMContentLoaded', event => {
     });
 
 });
+
+// multiform
+$(document).ready(function() {
+	$('#second').addClass('hide');
+
+	$(".next_btn").click(function() {
+
+	$('#second').addClass('show');
+	$('#second').removeClass('hide');
+	$('#first').addClass('hide');
+
+	
+	});
+
+	$(".pre_btn").click(function() { 
+	
+	$('#second').addClass('hide');
+	$('#second').removeClass('show');
+	$('#first').addClass('show');
+	$('#first').removeClass('hide');
+
+	});
+
+	// Validating All Input And Textarea Fields
+	$("#submittodb").click(function(e) {
+	if ($('input').val() == "" || $('textarea').val() == "") {
+	swal("All fields Are Mendetory", "go back and fill all the fields");
+	swal({
+		title: "All fields Are Mendetory",
+		text: "go back and fill all the fields",
+		icon: "warning",
+		dangerMode: true,
+	  })
+	return false;
+	} else {
+	return true;
+	}
+	});
+
+	});
